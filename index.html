@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contagem Regressiva para o Aniversário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Contagem Regressiva para o meu Aniversário</h1>
+
+  <div id="contador"></div>
+
+  <script>
+    // Data do seu aniversário
+    const aniversario = new Date("2024-04-21T00:00:00");
+
+    function atualizarContagemRegressiva() {
+        const agora = new Date();
+        const diferenca = aniversario - agora;
+        console.log(agora)
+        console.log(aniversario)
+        console.log(diferenca)
+
+        if (diferenca > 0) {
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+            document.getElementById("contador").innerHTML = `
+                <p>Faltam ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos para o seu aniversário.</p>
+            `;
+        } else {
+            document.getElementById("contador").innerHTML = "<p>Hoje é o seu aniversário! Parabéns!</p>";
+        }
+    }
+
+    // Atualiza a contagem regressiva a cada segundo
+    setInterval(atualizarContagemRegressiva, 1000);
+
+    // Chama a função inicialmente para evitar um atraso de um segundo
+    atualizarContagemRegressiva();
+  </script>
+
+</body>
+
+</html>
